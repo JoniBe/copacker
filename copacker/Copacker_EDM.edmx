@@ -132,7 +132,7 @@
             <PropertyRef Name="idPerfil" />
           </Key>
           <Property Name="idPerfil" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Promociones">
           <Key>
@@ -223,7 +223,7 @@
           </Key>
           <Property Name="idUsuario" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="idPerfil" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+          <Property Name="EstaActivo" Type="bit" />
         </EntityType>
         <Association Name="FK_AvanceDiario_Mesas">
           <End Role="Mesas" Type="Self.Mesas" Multiplicity="1" />
@@ -926,7 +926,7 @@
             <PropertyRef Name="idPerfil" />
           </Key>
           <Property Name="idPerfil" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuarios" Relationship="CopackerModel.FK_Usuarios_Perfiles" FromRole="Perfile" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Promocione">
@@ -1015,7 +1015,7 @@
           </Key>
           <Property Name="idUsuario" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="idPerfil" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <Property Name="EstaActivo" Type="Boolean" />
           <NavigationProperty Name="AvanceDiarios" Relationship="CopackerModel.FK_AvanceDiario_Usuarios" FromRole="Usuario" ToRole="AvanceDiario" />
           <NavigationProperty Name="FormulasKits" Relationship="CopackerModel.FK_FormulasKits_ToTable" FromRole="Usuario" ToRole="FormulasKit" />
           <NavigationProperty Name="Kits" Relationship="CopackerModel.FK_Kits_Usuarios" FromRole="Usuario" ToRole="Kit" />

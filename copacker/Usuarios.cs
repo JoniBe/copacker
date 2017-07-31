@@ -26,7 +26,7 @@ namespace copacker
     
         public string idUsuario { get; set; }
         public string idPerfil { get; set; }
-        public bool EstaActivo { get; set; }
+        public Nullable<bool> EstaActivo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AvanceDiario> AvanceDiarios { get; set; }

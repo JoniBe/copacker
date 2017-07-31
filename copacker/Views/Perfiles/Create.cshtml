@@ -1,4 +1,4 @@
-﻿@model copacker.Grupos
+﻿@model copacker.Perfiles
 
 @{
     if (ViewBag.UserRoleProperty == "Administradores")
@@ -27,10 +27,18 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Grupo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Perfil", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Grupo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Grupo, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.idPerfil, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.idPerfil, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>
         </div>
 

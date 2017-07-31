@@ -1,4 +1,4 @@
-﻿@model IEnumerable<copacker.Grupos>
+﻿@model IEnumerable<Perfiles>
 
 @{
     if (ViewBag.UserRoleProperty == "Administradores")
@@ -12,7 +12,7 @@
     {
         Response.Redirect("/Home/Index");
     }
-    ViewBag.Title = "Grupos";
+    ViewBag.Title = "Perfiles";
 }
 
 <h2>Grupos</h2>
@@ -23,7 +23,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Grupo)
+            @Html.DisplayName("Perfil")
         </th>
         <th></th>
     </tr>
@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Grupo)
+            @Html.DisplayFor(modelItem => item.idPerfil)
         </td>
         <td>
             @*@Html.ActionLink("Editar", "Edit", new { id=item.idGrupo }) |

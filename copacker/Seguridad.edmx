@@ -10,15 +10,15 @@
             <PropertyRef Name="idPerfil" />
           </Key>
           <Property Name="idPerfil" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="idUsuario" />
           </Key>
-          <Property Name="idUsuario" Type="varchar" MaxLength="15" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="idUsuario" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="idPerfil" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+          <Property Name="EstaActivo" Type="bit" />
         </EntityType>
         <Association Name="FK_Usuarios_Perfiles">
           <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
@@ -48,9 +48,9 @@
           <Key>
             <PropertyRef Name="idUsuario" />
           </Key>
-          <Property Name="idUsuario" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="idUsuario" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="idPerfil" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <Property Name="EstaActivo" Type="Boolean" />
           <NavigationProperty Name="Perfil" Relationship="CopackerModelSeguridad.FK_Usuarios_Perfiles" FromRole="Usuario" ToRole="Perfile" />
         </EntityType>
         <EntityContainer Name="CopackerSeguridad" annotation:LazyLoadingEnabled="true">
@@ -66,7 +66,7 @@
             <PropertyRef Name="idPerfil" />
           </Key>
           <Property Name="idPerfil" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="true" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuarios" Relationship="CopackerModelSeguridad.FK_Usuarios_Perfiles" FromRole="Perfile" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK_Usuarios_Perfiles">

@@ -157,11 +157,11 @@
     </Compile>
     <Compile Include="Controllers\DotacionSolicitadasController.cs" />
     <Compile Include="Controllers\EmpresasOperariosController.cs" />
-    <Compile Include="Controllers\GruposController.cs" />
+    <Compile Include="Controllers\PerfilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MesasController.cs" />
     <Compile Include="Controllers\MotivosHorasPerdidasController.cs" />
-    <Compile Include="Controllers\TurnoesController.cs" />
+    <Compile Include="Controllers\TurnosController.cs" />
     <Compile Include="Controllers\UnidadMedidasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Copacker_EDM.Context.cs">
@@ -208,7 +208,7 @@
       <DependentUpon>Copacker_EDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Perfiles.cs">
-      <DependentUpon>Seguridad.tt</DependentUpon>
+      <DependentUpon>Copacker_EDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Promocione.cs">
       <DependentUpon>Copacker_EDM.tt</DependentUpon>
@@ -251,7 +251,7 @@
       <DependentUpon>Copacker_EDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
-      <DependentUpon>Seguridad.tt</DependentUpon>
+      <DependentUpon>Copacker_EDM.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -324,11 +324,11 @@
     <Content Include="Views\Empresas\Details.cshtml" />
     <Content Include="Views\Empresas\Edit.cshtml" />
     <Content Include="Views\Empresas\Index.cshtml" />
-    <Content Include="Views\Turnoes\Create.cshtml" />
-    <Content Include="Views\Turnoes\Delete.cshtml" />
-    <Content Include="Views\Turnoes\Details.cshtml" />
-    <Content Include="Views\Turnoes\Edit.cshtml" />
-    <Content Include="Views\Turnoes\Index.cshtml" />
+    <Content Include="Views\Turnos\Create.cshtml" />
+    <Content Include="Views\Turnos\Delete.cshtml" />
+    <Content Include="Views\Turnos\Details.cshtml" />
+    <Content Include="Views\Turnos\Edit.cshtml" />
+    <Content Include="Views\Turnos\Index.cshtml" />
     <Content Include="Views\DotacionSolicitadas\Create.cshtml" />
     <Content Include="Views\DotacionSolicitadas\Delete.cshtml" />
     <Content Include="Views\DotacionSolicitadas\Details.cshtml" />
@@ -361,11 +361,11 @@
     <Content Include="Seguridad.edmx.diagram">
       <DependentUpon>Seguridad.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Grupos\Create.cshtml" />
-    <Content Include="Views\Grupos\Delete.cshtml" />
-    <Content Include="Views\Grupos\Details.cshtml" />
-    <Content Include="Views\Grupos\Edit.cshtml" />
-    <Content Include="Views\Grupos\Index.cshtml" />
+    <Content Include="Views\Perfiles\Create.cshtml" />
+    <Content Include="Views\Perfiles\Delete.cshtml" />
+    <Content Include="Views\Perfiles\Details.cshtml" />
+    <Content Include="Views\Perfiles\Edit.cshtml" />
+    <Content Include="Views\Perfiles\Index.cshtml" />
     <Content Include="Views\Usuarios\Create.cshtml" />
     <Content Include="Views\Usuarios\Delete.cshtml" />
     <Content Include="Views\Usuarios\Details.cshtml" />

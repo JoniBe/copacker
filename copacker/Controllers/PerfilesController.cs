@@ -11,9 +11,9 @@ using copacker;
 
 namespace copacker.Controllers
 {
-    public class GruposController : Controller
+    public class PerfilesController : Controller
     {
-        public GruposController()
+        public PerfilesController()
         {
             CopackerSeguridad sec = new CopackerSeguridad();
             string strUser = System.Threading.Thread.CurrentPrincipal.Identity.Name.ToLower();
@@ -45,7 +45,7 @@ namespace copacker.Controllers
         }
 
         // GET: Grupos/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -70,7 +70,7 @@ namespace copacker.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idGrupo,Grupo")] Perfiles grupos)
+        public async Task<ActionResult> Create([Bind(Include = "idPerfil,Descripcion,Perfil")] Perfiles grupos)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace copacker.Controllers
         }
 
         // GET: Grupos/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -114,7 +114,7 @@ namespace copacker.Controllers
         }
 
         // GET: Grupos/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -131,7 +131,7 @@ namespace copacker.Controllers
         // POST: Grupos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
             Perfiles grupos = await db.Perfiles.FindAsync(id);
             db.Perfiles.Remove(grupos);

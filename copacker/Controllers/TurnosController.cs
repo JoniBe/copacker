@@ -11,9 +11,9 @@ using copacker;
 
 namespace copacker.Controllers
 {
-    public class TurnoesController : Controller
+    public class TurnosController : Controller
     {
-        public TurnoesController()
+        public TurnosController()
         {
             CopackerSeguridad sec = new CopackerSeguridad();
             string strUser = System.Threading.Thread.CurrentPrincipal.Identity.Name.ToLower();
@@ -70,7 +70,7 @@ namespace copacker.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idTurno,Turno1")] Turno turno)
+        public async Task<ActionResult> Create([Bind(Include = "idTurno,Turno1,Turno")] Turno turno)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace copacker.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idTurno,Turno1")] Turno turno)
+        public async Task<ActionResult> Edit([Bind(Include = "idTurno,Turno1,Turno")] Turno turno)
         {
             if (ModelState.IsValid)
             {
