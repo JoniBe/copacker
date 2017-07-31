@@ -1,0 +1,45 @@
+﻿@model IEnumerable<copacker.UnidadMedida>
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores" ||
+        ViewBag.UserRoleProperty == "Propietarios")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Unidad de medidas";
+}
+
+<h2>Unidad de Medidas</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Descripción
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idUniMed }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idUniMed }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.idUniMed })
+        </td>
+    </tr>
+}
+
+</table>

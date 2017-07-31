@@ -1,0 +1,45 @@
+﻿@model IEnumerable<copacker.MotivosHorasPerdida>
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores" ||
+        ViewBag.UserRoleProperty == "Propietarios")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Motivo horas perdidas";
+}
+
+<h2>Motivo horas perdidas</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Motivo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idMotivo }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idMotivo }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.idMotivo })
+        </td>
+    </tr>
+}
+
+</table>

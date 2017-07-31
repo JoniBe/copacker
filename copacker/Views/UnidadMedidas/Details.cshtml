@@ -1,0 +1,38 @@
+﻿@model copacker.UnidadMedida
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores" ||
+        ViewBag.UserRoleProperty == "Propietarios")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Unidad Medida</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Descripción
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idUniMed }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

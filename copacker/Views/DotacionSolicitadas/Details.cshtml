@@ -1,0 +1,47 @@
+﻿@model copacker.DotacionSolicitada
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores" ||
+        ViewBag.UserRoleProperty == "Propietarios" ||
+        ViewBag.UserRoleProperty == "Integrantes")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Dotación Solicitada</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Dotación Solicitada
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DotacionSolicitada1)
+        </dd>
+
+        <dt>
+            Turno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Turno.Turno1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

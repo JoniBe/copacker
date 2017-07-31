@@ -1,0 +1,1536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CopackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AvanceDiario">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="idTurno" />
+            <PropertyRef Name="idMesa" />
+          </Key>
+          <Property Name="idPromocion" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="idTurno" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="idMesa" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="UnidadesRealizadas" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="MermaRealDelTurno" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="HorasPerdidas" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="idMotivoHorasPerdidas" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="100" />
+          <Property Name="Palletizado" Type="varchar" MaxLength="6" />
+          <Property Name="idUsuarioUltimaModificacion" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AvanceDiarioOperarios">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="idTurno" />
+            <PropertyRef Name="idMesa" />
+            <PropertyRef Name="Legajo" />
+          </Key>
+          <Property Name="idPromocion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="idTurno" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="idMesa" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Legajo" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DotacionSolicitada">
+          <Key>
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="idTurno" />
+          </Key>
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="idTurno" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="DotacionSolicitada" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostoxHoraxOperario" Type="decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="EmpresasOperarios">
+          <Key>
+            <PropertyRef Name="Legajo" />
+          </Key>
+          <Property Name="Legajo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idEmpresa" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaVtoCarnetSalud" Type="datetime" />
+          <Property Name="CompletoCuestionarioIngreso" Type="bit" Nullable="false" />
+          <Property Name="CompletoCuestionarioEnfermedades" Type="bit" Nullable="false" />
+          <Property Name="Telefono1" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="FormulasKits">
+          <Key>
+            <PropertyRef Name="idKit" />
+            <PropertyRef Name="SKU" />
+          </Key>
+          <Property Name="idKit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SKU" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="OrdenEnPantalla" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="CantInsumoProducto" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="idUsuarioUltimaModificacion" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsumosProductos">
+          <Key>
+            <PropertyRef Name="SKU" />
+          </Key>
+          <Property Name="SKU" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DescripcionCorta" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DescripcionLarga" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+          <Property Name="EsInsumo" Type="bit" Nullable="false" />
+          <Property Name="CantStock" Type="numeric" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="idUniMed" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="idUsuarioUltimaModificacion" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kits">
+          <Key>
+            <PropertyRef Name="idKit" />
+            <PropertyRef Name="idTipoKit" />
+          </Key>
+          <Property Name="idKit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DescripcionCorta" Type="varchar" MaxLength="30" />
+          <Property Name="DescripcionLarga" Type="varchar" MaxLength="100" />
+          <Property Name="idTipoKit" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CantKit" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="EstaActivo" Type="bit" />
+          <Property Name="PorcentajeMermaPermitido" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="CostoxHoraCliente" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="idUniMed" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Palletizado" Type="numeric" Precision="6" Scale="0" />
+          <Property Name="idUsuarioUltimaModificacion" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesas">
+          <Key>
+            <PropertyRef Name="idMesa" />
+          </Key>
+          <Property Name="idMesa" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MotivosHorasPerdidas">
+          <Key>
+            <PropertyRef Name="idMotivo" />
+          </Key>
+          <Property Name="idMotivo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Motivo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PagaCliente" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+          </Key>
+          <Property Name="idPerfil" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promociones">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+          </Key>
+          <Property Name="idPromocion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idKit" Type="varchar" MaxLength="20" />
+          <Property Name="EstadoPromocion" Type="int" />
+          <Property Name="DescripcionLargaKit" Type="varchar" MaxLength="100" />
+          <Property Name="DescripcionPromocion" Type="varchar" MaxLength="100" />
+          <Property Name="idPromocionCliente" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NroOrdenDeCompraInterna" Type="varchar" MaxLength="20" />
+          <Property Name="FechaOrdenDeCompraInterna" Type="datetime" />
+          <Property Name="NroOrdenDeCompraCliente" Type="varchar" MaxLength="20" />
+          <Property Name="FechaOrdenDeCompraCliente" Type="datetime" />
+          <Property Name="FechaCreacionPromocion" Type="datetime" />
+          <Property Name="FechaCierreAcordadoPromocion" Type="datetime" />
+          <Property Name="FechaCierreRealPromocion" Type="datetime" />
+          <Property Name="PorcentajeMermaReal" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="ProductividadEstandar" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="CantKitsAProducir" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="CostoClientexUnidad" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="idUsuarioUltimaModificacion" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PromocionesEmpresas">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idPromocion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpresa" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CostoEmpresaxHora" Type="numeric" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="StockAjustes">
+          <Key>
+            <PropertyRef Name="idAjuste" />
+          </Key>
+          <Property Name="idAjuste" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="SKU" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CantAjustada" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="TipoAjuste" Type="bit" />
+          <Property Name="idMotivo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="StockAjustesMotivos">
+          <Key>
+            <PropertyRef Name="idMotivo" />
+          </Key>
+          <Property Name="idMotivo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Motivo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoKit">
+          <Key>
+            <PropertyRef Name="idTipoKit" />
+          </Key>
+          <Property Name="idTipoKit" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Turnos">
+          <Key>
+            <PropertyRef Name="idTurno" />
+          </Key>
+          <Property Name="idTurno" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Turno" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnidadMedida">
+          <Key>
+            <PropertyRef Name="idUniMed" />
+          </Key>
+          <Property Name="idUniMed" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="idPerfil" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AvanceDiario_Mesas">
+          <End Role="Mesas" Type="Self.Mesas" Multiplicity="1" />
+          <End Role="AvanceDiario" Type="Self.AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesas">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiario_MotivosHorasPerdidas">
+          <End Role="MotivosHorasPerdidas" Type="Self.MotivosHorasPerdidas" Multiplicity="1" />
+          <End Role="AvanceDiario" Type="Self.AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotivosHorasPerdidas">
+              <PropertyRef Name="idMotivo" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idMotivoHorasPerdidas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiario_Promociones">
+          <End Role="Promociones" Type="Self.Promociones" Multiplicity="1" />
+          <End Role="AvanceDiario" Type="Self.AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promociones">
+              <PropertyRef Name="idPromocion" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idPromocion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiario_Turnos">
+          <End Role="Turnos" Type="Self.Turnos" Multiplicity="1" />
+          <End Role="AvanceDiario" Type="Self.AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turnos">
+              <PropertyRef Name="idTurno" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idTurno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiario_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="AvanceDiario" Type="Self.AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idUsuarioUltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiarioOperarios_EmpresasOperarios">
+          <End Role="EmpresasOperarios" Type="Self.EmpresasOperarios" Multiplicity="1" />
+          <End Role="AvanceDiarioOperarios" Type="Self.AvanceDiarioOperarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpresasOperarios">
+              <PropertyRef Name="Legajo" />
+            </Principal>
+            <Dependent Role="AvanceDiarioOperarios">
+              <PropertyRef Name="Legajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiarioOperarios_Mesas">
+          <End Role="Mesas" Type="Self.Mesas" Multiplicity="1" />
+          <End Role="AvanceDiarioOperarios" Type="Self.AvanceDiarioOperarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesas">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="AvanceDiarioOperarios">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiarioOperarios_Promociones">
+          <End Role="Promociones" Type="Self.Promociones" Multiplicity="1" />
+          <End Role="AvanceDiarioOperarios" Type="Self.AvanceDiarioOperarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promociones">
+              <PropertyRef Name="idPromocion" />
+            </Principal>
+            <Dependent Role="AvanceDiarioOperarios">
+              <PropertyRef Name="idPromocion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiarioOperarios_Turnos">
+          <End Role="Turnos" Type="Self.Turnos" Multiplicity="1" />
+          <End Role="AvanceDiarioOperarios" Type="Self.AvanceDiarioOperarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turnos">
+              <PropertyRef Name="idTurno" />
+            </Principal>
+            <Dependent Role="AvanceDiarioOperarios">
+              <PropertyRef Name="idTurno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DotacionSolicitada_Turnos">
+          <End Role="Turnos" Type="Self.Turnos" Multiplicity="1" />
+          <End Role="DotacionSolicitada" Type="Self.DotacionSolicitada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turnos">
+              <PropertyRef Name="idTurno" />
+            </Principal>
+            <Dependent Role="DotacionSolicitada">
+              <PropertyRef Name="idTurno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpresasOperarios_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="EmpresasOperarios" Type="Self.EmpresasOperarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="EmpresasOperarios">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormulasKits_ToTable">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="FormulasKits" Type="Self.FormulasKits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="FormulasKits">
+              <PropertyRef Name="idUsuarioUltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsumosProductos_UnidadMedida">
+          <End Role="UnidadMedida" Type="Self.UnidadMedida" Multiplicity="1" />
+          <End Role="InsumosProductos" Type="Self.InsumosProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadMedida">
+              <PropertyRef Name="idUniMed" />
+            </Principal>
+            <Dependent Role="InsumosProductos">
+              <PropertyRef Name="idUniMed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kits_TipoKit">
+          <End Role="TipoKit" Type="Self.TipoKit" Multiplicity="1" />
+          <End Role="Kits" Type="Self.Kits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoKit">
+              <PropertyRef Name="idTipoKit" />
+            </Principal>
+            <Dependent Role="Kits">
+              <PropertyRef Name="idTipoKit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kits_UnidadMedida">
+          <End Role="UnidadMedida" Type="Self.UnidadMedida" Multiplicity="1" />
+          <End Role="Kits" Type="Self.Kits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadMedida">
+              <PropertyRef Name="idUniMed" />
+            </Principal>
+            <Dependent Role="Kits">
+              <PropertyRef Name="idUniMed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kits_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Kits" Type="Self.Kits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Kits">
+              <PropertyRef Name="idUsuarioUltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promociones_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Promociones" Type="Self.Promociones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Promociones">
+              <PropertyRef Name="idUsuarioUltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromocionesEmpresas_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="PromocionesEmpresas" Type="Self.PromocionesEmpresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="PromocionesEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromocionesEmpresas_Promociones">
+          <End Role="Promociones" Type="Self.Promociones" Multiplicity="1" />
+          <End Role="PromocionesEmpresas" Type="Self.PromocionesEmpresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promociones">
+              <PropertyRef Name="idPromocion" />
+            </Principal>
+            <Dependent Role="PromocionesEmpresas">
+              <PropertyRef Name="idPromocion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockAjustes_InsumosProductos">
+          <End Role="InsumosProductos" Type="Self.InsumosProductos" Multiplicity="1" />
+          <End Role="StockAjustes" Type="Self.StockAjustes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsumosProductos">
+              <PropertyRef Name="SKU" />
+            </Principal>
+            <Dependent Role="StockAjustes">
+              <PropertyRef Name="SKU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockAjustes_StockAjustesMotivos">
+          <End Role="StockAjustesMotivos" Type="Self.StockAjustesMotivos" Multiplicity="1" />
+          <End Role="StockAjustes" Type="Self.StockAjustes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockAjustesMotivos">
+              <PropertyRef Name="idMotivo" />
+            </Principal>
+            <Dependent Role="StockAjustes">
+              <PropertyRef Name="idMotivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockAjustes_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="StockAjustes" Type="Self.StockAjustes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="StockAjustes">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Perfiles">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CopackerModelStoreContainer">
+          <EntitySet Name="AvanceDiario" EntityType="Self.AvanceDiario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AvanceDiarioOperarios" EntityType="Self.AvanceDiarioOperarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DotacionSolicitada" EntityType="Self.DotacionSolicitada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpresasOperarios" EntityType="Self.EmpresasOperarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormulasKits" EntityType="Self.FormulasKits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsumosProductos" EntityType="Self.InsumosProductos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kits" EntityType="Self.Kits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesas" EntityType="Self.Mesas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotivosHorasPerdidas" EntityType="Self.MotivosHorasPerdidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promociones" EntityType="Self.Promociones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PromocionesEmpresas" EntityType="Self.PromocionesEmpresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockAjustes" EntityType="Self.StockAjustes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockAjustesMotivos" EntityType="Self.StockAjustesMotivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoKit" EntityType="Self.TipoKit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turnos" EntityType="Self.Turnos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AvanceDiario_Mesas" Association="Self.FK_AvanceDiario_Mesas">
+            <End Role="Mesas" EntitySet="Mesas" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiario_MotivosHorasPerdidas" Association="Self.FK_AvanceDiario_MotivosHorasPerdidas">
+            <End Role="MotivosHorasPerdidas" EntitySet="MotivosHorasPerdidas" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiario_Promociones" Association="Self.FK_AvanceDiario_Promociones">
+            <End Role="Promociones" EntitySet="Promociones" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiario_Turnos" Association="Self.FK_AvanceDiario_Turnos">
+            <End Role="Turnos" EntitySet="Turnos" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiario_Usuarios" Association="Self.FK_AvanceDiario_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiarioOperarios_EmpresasOperarios" Association="Self.FK_AvanceDiarioOperarios_EmpresasOperarios">
+            <End Role="EmpresasOperarios" EntitySet="EmpresasOperarios" />
+            <End Role="AvanceDiarioOperarios" EntitySet="AvanceDiarioOperarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiarioOperarios_Mesas" Association="Self.FK_AvanceDiarioOperarios_Mesas">
+            <End Role="Mesas" EntitySet="Mesas" />
+            <End Role="AvanceDiarioOperarios" EntitySet="AvanceDiarioOperarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiarioOperarios_Promociones" Association="Self.FK_AvanceDiarioOperarios_Promociones">
+            <End Role="Promociones" EntitySet="Promociones" />
+            <End Role="AvanceDiarioOperarios" EntitySet="AvanceDiarioOperarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiarioOperarios_Turnos" Association="Self.FK_AvanceDiarioOperarios_Turnos">
+            <End Role="Turnos" EntitySet="Turnos" />
+            <End Role="AvanceDiarioOperarios" EntitySet="AvanceDiarioOperarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DotacionSolicitada_Turnos" Association="Self.FK_DotacionSolicitada_Turnos">
+            <End Role="Turnos" EntitySet="Turnos" />
+            <End Role="DotacionSolicitada" EntitySet="DotacionSolicitada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpresasOperarios_Empresas" Association="Self.FK_EmpresasOperarios_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="EmpresasOperarios" EntitySet="EmpresasOperarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormulasKits_ToTable" Association="Self.FK_FormulasKits_ToTable">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="FormulasKits" EntitySet="FormulasKits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsumosProductos_UnidadMedida" Association="Self.FK_InsumosProductos_UnidadMedida">
+            <End Role="UnidadMedida" EntitySet="UnidadMedida" />
+            <End Role="InsumosProductos" EntitySet="InsumosProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kits_TipoKit" Association="Self.FK_Kits_TipoKit">
+            <End Role="TipoKit" EntitySet="TipoKit" />
+            <End Role="Kits" EntitySet="Kits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kits_UnidadMedida" Association="Self.FK_Kits_UnidadMedida">
+            <End Role="UnidadMedida" EntitySet="UnidadMedida" />
+            <End Role="Kits" EntitySet="Kits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kits_Usuarios" Association="Self.FK_Kits_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Kits" EntitySet="Kits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promociones_Usuarios" Association="Self.FK_Promociones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Promociones" EntitySet="Promociones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromocionesEmpresas_Empresas" Association="Self.FK_PromocionesEmpresas_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="PromocionesEmpresas" EntitySet="PromocionesEmpresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromocionesEmpresas_Promociones" Association="Self.FK_PromocionesEmpresas_Promociones">
+            <End Role="Promociones" EntitySet="Promociones" />
+            <End Role="PromocionesEmpresas" EntitySet="PromocionesEmpresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockAjustes_InsumosProductos" Association="Self.FK_StockAjustes_InsumosProductos">
+            <End Role="InsumosProductos" EntitySet="InsumosProductos" />
+            <End Role="StockAjustes" EntitySet="StockAjustes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockAjustes_StockAjustesMotivos" Association="Self.FK_StockAjustes_StockAjustesMotivos">
+            <End Role="StockAjustesMotivos" EntitySet="StockAjustesMotivos" />
+            <End Role="StockAjustes" EntitySet="StockAjustes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockAjustes_Usuarios" Association="Self.FK_StockAjustes_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="StockAjustes" EntitySet="StockAjustes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Perfiles" Association="Self.FK_Usuarios_Perfiles">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CopackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DotacionSolicitada">
+          <Key>
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="idTurno" />
+          </Key>
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idTurno" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DotacionSolicitada1" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Turno" Relationship="Self.FK_DotacionSolicitada_Turnos" FromRole="DotacionSolicitada" ToRole="Turnos" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostoxHoraxOperario" Type="Decimal" Precision="6" Scale="2" />
+          <NavigationProperty Name="EmpresasOperarios" Relationship="Self.FK_EmpresasOperarios_Empresas" FromRole="Empresas" ToRole="EmpresasOperarios" />
+          <NavigationProperty Name="PromocionesEmpresas" Relationship="CopackerModel.FK_PromocionesEmpresas_Empresas" FromRole="Empresa" ToRole="PromocionesEmpresa" />
+        </EntityType>
+        <EntityType Name="EmpresasOperario">
+          <Key>
+            <PropertyRef Name="Legajo" />
+          </Key>
+          <Property Name="Legajo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaVtoCarnetSalud" Type="DateTime" Precision="3" />
+          <Property Name="Telefono1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_EmpresasOperarios_Empresas" FromRole="EmpresasOperarios" ToRole="Empresas" />
+          <Property Name="CompletoCuestionarioIngreso" Type="Boolean" Nullable="false" />
+          <Property Name="CompletoCuestionarioEnfermedades" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AvanceDiarioOperarios" Relationship="CopackerModel.FK_AvanceDiarioOperarios_EmpresasOperarios" FromRole="EmpresasOperario" ToRole="AvanceDiarioOperario" />
+        </EntityType>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="idMesa" />
+          </Key>
+          <Property Name="idMesa" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AvanceDiarios" Relationship="CopackerModel.FK_AvanceDiario_Mesas" FromRole="Mesa" ToRole="AvanceDiario" />
+          <NavigationProperty Name="AvanceDiarioOperarios" Relationship="CopackerModel.FK_AvanceDiarioOperarios_Mesas" FromRole="Mesa" ToRole="AvanceDiarioOperario" />
+        </EntityType>
+        <EntityType Name="MotivosHorasPerdida">
+          <Key>
+            <PropertyRef Name="idMotivo" />
+          </Key>
+          <Property Name="idMotivo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Motivo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PagaCliente" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AvanceDiarios" Relationship="CopackerModel.FK_AvanceDiario_MotivosHorasPerdidas" FromRole="MotivosHorasPerdida" ToRole="AvanceDiario" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="idTurno" />
+          </Key>
+          <Property Name="idTurno" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Turno1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DotacionSolicitadas" Relationship="Self.FK_DotacionSolicitada_Turnos" FromRole="Turnos" ToRole="DotacionSolicitada" />
+          <NavigationProperty Name="AvanceDiarios" Relationship="CopackerModel.FK_AvanceDiario_Turnos" FromRole="Turno" ToRole="AvanceDiario" />
+          <NavigationProperty Name="AvanceDiarioOperarios" Relationship="CopackerModel.FK_AvanceDiarioOperarios_Turnos" FromRole="Turno" ToRole="AvanceDiarioOperario" />
+        </EntityType>
+        <EntityType Name="UnidadMedida">
+          <Key>
+            <PropertyRef Name="idUniMed" />
+          </Key>
+          <Property Name="idUniMed" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="InsumosProductos" Relationship="CopackerModel.FK_InsumosProductos_UnidadMedida" FromRole="UnidadMedida" ToRole="InsumosProducto" />
+          <NavigationProperty Name="Kits" Relationship="CopackerModel.FK_Kits_UnidadMedida" FromRole="UnidadMedida" ToRole="Kit" />
+        </EntityType>
+        <Association Name="FK_DotacionSolicitada_Turnos">
+          <End Role="Turnos" Type="Self.Turno" Multiplicity="1" />
+          <End Role="DotacionSolicitada" Type="Self.DotacionSolicitada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turnos">
+              <PropertyRef Name="idTurno" />
+            </Principal>
+            <Dependent Role="DotacionSolicitada">
+              <PropertyRef Name="idTurno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpresasOperarios_Empresas">
+          <End Role="Empresas" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="EmpresasOperarios" Type="Self.EmpresasOperario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="EmpresasOperarios">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CopackerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DotacionSolicitadas" EntityType="Self.DotacionSolicitada" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresa" />
+          <EntitySet Name="EmpresasOperarios" EntityType="Self.EmpresasOperario" />
+          <EntitySet Name="Mesas" EntityType="Self.Mesa" />
+          <EntitySet Name="MotivosHorasPerdidas" EntityType="Self.MotivosHorasPerdida" />
+          <EntitySet Name="Turnos" EntityType="Self.Turno" />
+          <EntitySet Name="UnidadMedidas" EntityType="Self.UnidadMedida" />
+          <AssociationSet Name="FK_DotacionSolicitada_Turnos" Association="Self.FK_DotacionSolicitada_Turnos">
+            <End Role="Turnos" EntitySet="Turnos" />
+            <End Role="DotacionSolicitada" EntitySet="DotacionSolicitadas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpresasOperarios_Empresas" Association="Self.FK_EmpresasOperarios_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="EmpresasOperarios" EntitySet="EmpresasOperarios" />
+          </AssociationSet>
+          <EntitySet Name="AvanceDiarios" EntityType="CopackerModel.AvanceDiario" />
+          <EntitySet Name="AvanceDiarioOperarios1" EntityType="CopackerModel.AvanceDiarioOperarios" />
+          <EntitySet Name="FormulasKits" EntityType="CopackerModel.FormulasKit" />
+          <EntitySet Name="InsumosProductos" EntityType="CopackerModel.InsumosProducto" />
+          <EntitySet Name="Kits1" EntityType="CopackerModel.Kits" />
+          <EntitySet Name="Perfiles1" EntityType="CopackerModel.Perfiles" />
+          <EntitySet Name="Promociones" EntityType="CopackerModel.Promocione" />
+          <EntitySet Name="PromocionesEmpresas1" EntityType="CopackerModel.PromocionesEmpresas" />
+          <EntitySet Name="StockAjustes1" EntityType="CopackerModel.StockAjustes" />
+          <EntitySet Name="StockAjustesMotivos" EntityType="CopackerModel.StockAjustesMotivo" />
+          <EntitySet Name="sysdiagrams" EntityType="CopackerModel.sysdiagram" />
+          <EntitySet Name="TipoKits" EntityType="CopackerModel.TipoKit" />
+          <EntitySet Name="Usuarios1" EntityType="CopackerModel.Usuarios" />
+          <AssociationSet Name="FK_AvanceDiario_Mesas" Association="CopackerModel.FK_AvanceDiario_Mesas">
+            <End Role="Mesa" EntitySet="Mesas" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiario_MotivosHorasPerdidas" Association="CopackerModel.FK_AvanceDiario_MotivosHorasPerdidas">
+            <End Role="MotivosHorasPerdida" EntitySet="MotivosHorasPerdidas" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiario_Promociones" Association="CopackerModel.FK_AvanceDiario_Promociones">
+            <End Role="Promocione" EntitySet="Promociones" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiario_Turnos" Association="CopackerModel.FK_AvanceDiario_Turnos">
+            <End Role="Turno" EntitySet="Turnos" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiario_Usuarios" Association="CopackerModel.FK_AvanceDiario_Usuarios">
+            <End Role="Usuario" EntitySet="Usuarios1" />
+            <End Role="AvanceDiario" EntitySet="AvanceDiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiarioOperarios_EmpresasOperarios" Association="CopackerModel.FK_AvanceDiarioOperarios_EmpresasOperarios">
+            <End Role="EmpresasOperario" EntitySet="EmpresasOperarios" />
+            <End Role="AvanceDiarioOperario" EntitySet="AvanceDiarioOperarios1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiarioOperarios_Mesas" Association="CopackerModel.FK_AvanceDiarioOperarios_Mesas">
+            <End Role="Mesa" EntitySet="Mesas" />
+            <End Role="AvanceDiarioOperario" EntitySet="AvanceDiarioOperarios1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiarioOperarios_Promociones" Association="CopackerModel.FK_AvanceDiarioOperarios_Promociones">
+            <End Role="Promocione" EntitySet="Promociones" />
+            <End Role="AvanceDiarioOperario" EntitySet="AvanceDiarioOperarios1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvanceDiarioOperarios_Turnos" Association="CopackerModel.FK_AvanceDiarioOperarios_Turnos">
+            <End Role="Turno" EntitySet="Turnos" />
+            <End Role="AvanceDiarioOperario" EntitySet="AvanceDiarioOperarios1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromocionesEmpresas_Empresas" Association="CopackerModel.FK_PromocionesEmpresas_Empresas">
+            <End Role="Empresa" EntitySet="Empresas" />
+            <End Role="PromocionesEmpresa" EntitySet="PromocionesEmpresas1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormulasKits_ToTable" Association="CopackerModel.FK_FormulasKits_ToTable">
+            <End Role="Usuario" EntitySet="Usuarios1" />
+            <End Role="FormulasKit" EntitySet="FormulasKits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsumosProductos_UnidadMedida" Association="CopackerModel.FK_InsumosProductos_UnidadMedida">
+            <End Role="UnidadMedida" EntitySet="UnidadMedidas" />
+            <End Role="InsumosProducto" EntitySet="InsumosProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockAjustes_InsumosProductos" Association="CopackerModel.FK_StockAjustes_InsumosProductos">
+            <End Role="InsumosProducto" EntitySet="InsumosProductos" />
+            <End Role="StockAjuste" EntitySet="StockAjustes1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kits_TipoKit" Association="CopackerModel.FK_Kits_TipoKit">
+            <End Role="TipoKit" EntitySet="TipoKits" />
+            <End Role="Kit" EntitySet="Kits1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kits_UnidadMedida" Association="CopackerModel.FK_Kits_UnidadMedida">
+            <End Role="UnidadMedida" EntitySet="UnidadMedidas" />
+            <End Role="Kit" EntitySet="Kits1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kits_Usuarios" Association="CopackerModel.FK_Kits_Usuarios">
+            <End Role="Usuario" EntitySet="Usuarios1" />
+            <End Role="Kit" EntitySet="Kits1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Perfiles" Association="CopackerModel.FK_Usuarios_Perfiles">
+            <End Role="Perfile" EntitySet="Perfiles1" />
+            <End Role="Usuario" EntitySet="Usuarios1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promociones_Usuarios" Association="CopackerModel.FK_Promociones_Usuarios">
+            <End Role="Usuario" EntitySet="Usuarios1" />
+            <End Role="Promocione" EntitySet="Promociones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromocionesEmpresas_Promociones" Association="CopackerModel.FK_PromocionesEmpresas_Promociones">
+            <End Role="Promocione" EntitySet="Promociones" />
+            <End Role="PromocionesEmpresa" EntitySet="PromocionesEmpresas1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockAjustes_StockAjustesMotivos" Association="CopackerModel.FK_StockAjustes_StockAjustesMotivos">
+            <End Role="StockAjustesMotivo" EntitySet="StockAjustesMotivos" />
+            <End Role="StockAjuste" EntitySet="StockAjustes1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockAjustes_Usuarios" Association="CopackerModel.FK_StockAjustes_Usuarios">
+            <End Role="Usuario" EntitySet="Usuarios1" />
+            <End Role="StockAjuste" EntitySet="StockAjustes1" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AvanceDiario">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="idTurno" />
+            <PropertyRef Name="idMesa" />
+          </Key>
+          <Property Name="idPromocion" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idTurno" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="idMesa" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="UnidadesRealizadas" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="MermaRealDelTurno" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="HorasPerdidas" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="idMotivoHorasPerdidas" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Palletizado" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuarioUltimaModificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mesa" Relationship="CopackerModel.FK_AvanceDiario_Mesas" FromRole="AvanceDiario" ToRole="Mesa" />
+          <NavigationProperty Name="MotivosHorasPerdida" Relationship="CopackerModel.FK_AvanceDiario_MotivosHorasPerdidas" FromRole="AvanceDiario" ToRole="MotivosHorasPerdida" />
+          <NavigationProperty Name="Promocione" Relationship="CopackerModel.FK_AvanceDiario_Promociones" FromRole="AvanceDiario" ToRole="Promocione" />
+          <NavigationProperty Name="Turno" Relationship="CopackerModel.FK_AvanceDiario_Turnos" FromRole="AvanceDiario" ToRole="Turno" />
+          <NavigationProperty Name="Usuario" Relationship="CopackerModel.FK_AvanceDiario_Usuarios" FromRole="AvanceDiario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="AvanceDiarioOperarios">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="idTurno" />
+            <PropertyRef Name="idMesa" />
+            <PropertyRef Name="Legajo" />
+          </Key>
+          <Property Name="idPromocion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idTurno" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="idMesa" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Legajo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmpresasOperario" Relationship="CopackerModel.FK_AvanceDiarioOperarios_EmpresasOperarios" FromRole="AvanceDiarioOperario" ToRole="EmpresasOperario" />
+          <NavigationProperty Name="Mesa" Relationship="CopackerModel.FK_AvanceDiarioOperarios_Mesas" FromRole="AvanceDiarioOperario" ToRole="Mesa" />
+          <NavigationProperty Name="Promocione" Relationship="CopackerModel.FK_AvanceDiarioOperarios_Promociones" FromRole="AvanceDiarioOperario" ToRole="Promocione" />
+          <NavigationProperty Name="Turno" Relationship="CopackerModel.FK_AvanceDiarioOperarios_Turnos" FromRole="AvanceDiarioOperario" ToRole="Turno" />
+        </EntityType>
+        <EntityType Name="FormulasKit">
+          <Key>
+            <PropertyRef Name="idKit" />
+            <PropertyRef Name="SKU" />
+          </Key>
+          <Property Name="idKit" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SKU" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OrdenEnPantalla" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="CantInsumoProducto" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="idUsuarioUltimaModificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="CopackerModel.FK_FormulasKits_ToTable" FromRole="FormulasKit" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="InsumosProducto">
+          <Key>
+            <PropertyRef Name="SKU" />
+          </Key>
+          <Property Name="SKU" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionCorta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionLarga" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <Property Name="EsInsumo" Type="Boolean" Nullable="false" />
+          <Property Name="CantStock" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="idUniMed" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuarioUltimaModificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UnidadMedida" Relationship="CopackerModel.FK_InsumosProductos_UnidadMedida" FromRole="InsumosProducto" ToRole="UnidadMedida" />
+          <NavigationProperty Name="StockAjustes" Relationship="CopackerModel.FK_StockAjustes_InsumosProductos" FromRole="InsumosProducto" ToRole="StockAjuste" />
+        </EntityType>
+        <EntityType Name="Kits">
+          <Key>
+            <PropertyRef Name="idKit" />
+            <PropertyRef Name="idTipoKit" />
+          </Key>
+          <Property Name="idKit" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionCorta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionLarga" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoKit" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="CantKit" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="EstaActivo" Type="Boolean" />
+          <Property Name="PorcentajeMermaPermitido" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CostoxHoraCliente" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="idUniMed" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Palletizado" Type="Decimal" Precision="6" Scale="0" />
+          <Property Name="idUsuarioUltimaModificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TipoKit" Relationship="CopackerModel.FK_Kits_TipoKit" FromRole="Kit" ToRole="TipoKit" />
+          <NavigationProperty Name="UnidadMedida" Relationship="CopackerModel.FK_Kits_UnidadMedida" FromRole="Kit" ToRole="UnidadMedida" />
+          <NavigationProperty Name="Usuario" Relationship="CopackerModel.FK_Kits_Usuarios" FromRole="Kit" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+          </Key>
+          <Property Name="idPerfil" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="CopackerModel.FK_Usuarios_Perfiles" FromRole="Perfile" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Promocione">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+          </Key>
+          <Property Name="idPromocion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idKit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoPromocion" Type="Int32" />
+          <Property Name="DescripcionLargaKit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionPromocion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idPromocionCliente" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NroOrdenDeCompraInterna" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FechaOrdenDeCompraInterna" Type="DateTime" Precision="3" />
+          <Property Name="NroOrdenDeCompraCliente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FechaOrdenDeCompraCliente" Type="DateTime" Precision="3" />
+          <Property Name="FechaCreacionPromocion" Type="DateTime" Precision="3" />
+          <Property Name="FechaCierreAcordadoPromocion" Type="DateTime" Precision="3" />
+          <Property Name="FechaCierreRealPromocion" Type="DateTime" Precision="3" />
+          <Property Name="PorcentajeMermaReal" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="ProductividadEstandar" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="CantKitsAProducir" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="CostoClientexUnidad" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="idUsuarioUltimaModificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AvanceDiarios" Relationship="CopackerModel.FK_AvanceDiario_Promociones" FromRole="Promocione" ToRole="AvanceDiario" />
+          <NavigationProperty Name="AvanceDiarioOperarios" Relationship="CopackerModel.FK_AvanceDiarioOperarios_Promociones" FromRole="Promocione" ToRole="AvanceDiarioOperario" />
+          <NavigationProperty Name="Usuario" Relationship="CopackerModel.FK_Promociones_Usuarios" FromRole="Promocione" ToRole="Usuario" />
+          <NavigationProperty Name="PromocionesEmpresas" Relationship="CopackerModel.FK_PromocionesEmpresas_Promociones" FromRole="Promocione" ToRole="PromocionesEmpresa" />
+        </EntityType>
+        <EntityType Name="PromocionesEmpresas">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idPromocion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpresa" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="CostoEmpresaxHora" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="Empresa" Relationship="CopackerModel.FK_PromocionesEmpresas_Empresas" FromRole="PromocionesEmpresa" ToRole="Empresa" />
+          <NavigationProperty Name="Promociones" Relationship="CopackerModel.FK_PromocionesEmpresas_Promociones" FromRole="PromocionesEmpresa" ToRole="Promocione" />
+        </EntityType>
+        <EntityType Name="StockAjustes">
+          <Key>
+            <PropertyRef Name="idAjuste" />
+          </Key>
+          <Property Name="idAjuste" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="SKU" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CantAjustada" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="TipoAjuste" Type="Boolean" />
+          <Property Name="idMotivo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="InsumosProducto" Relationship="CopackerModel.FK_StockAjustes_InsumosProductos" FromRole="StockAjuste" ToRole="InsumosProducto" />
+          <NavigationProperty Name="StockAjustesMotivo" Relationship="CopackerModel.FK_StockAjustes_StockAjustesMotivos" FromRole="StockAjuste" ToRole="StockAjustesMotivo" />
+          <NavigationProperty Name="Usuario" Relationship="CopackerModel.FK_StockAjustes_Usuarios" FromRole="StockAjuste" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="StockAjustesMotivo">
+          <Key>
+            <PropertyRef Name="idMotivo" />
+          </Key>
+          <Property Name="idMotivo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Motivo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="StockAjustes" Relationship="CopackerModel.FK_StockAjustes_StockAjustesMotivos" FromRole="StockAjustesMotivo" ToRole="StockAjuste" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoKit">
+          <Key>
+            <PropertyRef Name="idTipoKit" />
+          </Key>
+          <Property Name="idTipoKit" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Kits" Relationship="CopackerModel.FK_Kits_TipoKit" FromRole="TipoKit" ToRole="Kit" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="idPerfil" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AvanceDiarios" Relationship="CopackerModel.FK_AvanceDiario_Usuarios" FromRole="Usuario" ToRole="AvanceDiario" />
+          <NavigationProperty Name="FormulasKits" Relationship="CopackerModel.FK_FormulasKits_ToTable" FromRole="Usuario" ToRole="FormulasKit" />
+          <NavigationProperty Name="Kits" Relationship="CopackerModel.FK_Kits_Usuarios" FromRole="Usuario" ToRole="Kit" />
+          <NavigationProperty Name="Perfil" Relationship="CopackerModel.FK_Usuarios_Perfiles" FromRole="Usuario" ToRole="Perfile" />
+          <NavigationProperty Name="Promociones" Relationship="CopackerModel.FK_Promociones_Usuarios" FromRole="Usuario" ToRole="Promocione" />
+          <NavigationProperty Name="StockAjustes" Relationship="CopackerModel.FK_StockAjustes_Usuarios" FromRole="Usuario" ToRole="StockAjuste" />
+        </EntityType>
+        <Association Name="FK_AvanceDiario_Mesas">
+          <End Type="CopackerModel.Mesa" Role="Mesa" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiario" Role="AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiario_MotivosHorasPerdidas">
+          <End Type="CopackerModel.MotivosHorasPerdida" Role="MotivosHorasPerdida" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiario" Role="AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotivosHorasPerdida">
+              <PropertyRef Name="idMotivo" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idMotivoHorasPerdidas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiario_Promociones">
+          <End Type="CopackerModel.Promocione" Role="Promocione" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiario" Role="AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promocione">
+              <PropertyRef Name="idPromocion" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idPromocion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiario_Turnos">
+          <End Type="CopackerModel.Turno" Role="Turno" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiario" Role="AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="idTurno" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idTurno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiario_Usuarios">
+          <End Type="CopackerModel.Usuarios" Role="Usuario" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiario" Role="AvanceDiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="AvanceDiario">
+              <PropertyRef Name="idUsuarioUltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiarioOperarios_EmpresasOperarios">
+          <End Type="CopackerModel.EmpresasOperario" Role="EmpresasOperario" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiarioOperarios" Role="AvanceDiarioOperario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpresasOperario">
+              <PropertyRef Name="Legajo" />
+            </Principal>
+            <Dependent Role="AvanceDiarioOperario">
+              <PropertyRef Name="Legajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiarioOperarios_Mesas">
+          <End Type="CopackerModel.Mesa" Role="Mesa" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiarioOperarios" Role="AvanceDiarioOperario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="AvanceDiarioOperario">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiarioOperarios_Promociones">
+          <End Type="CopackerModel.Promocione" Role="Promocione" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiarioOperarios" Role="AvanceDiarioOperario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promocione">
+              <PropertyRef Name="idPromocion" />
+            </Principal>
+            <Dependent Role="AvanceDiarioOperario">
+              <PropertyRef Name="idPromocion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvanceDiarioOperarios_Turnos">
+          <End Type="CopackerModel.Turno" Role="Turno" Multiplicity="1" />
+          <End Type="CopackerModel.AvanceDiarioOperarios" Role="AvanceDiarioOperario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="idTurno" />
+            </Principal>
+            <Dependent Role="AvanceDiarioOperario">
+              <PropertyRef Name="idTurno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromocionesEmpresas_Empresas">
+          <End Type="CopackerModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="CopackerModel.PromocionesEmpresas" Role="PromocionesEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="PromocionesEmpresa">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormulasKits_ToTable">
+          <End Type="CopackerModel.Usuarios" Role="Usuario" Multiplicity="1" />
+          <End Type="CopackerModel.FormulasKit" Role="FormulasKit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="FormulasKit">
+              <PropertyRef Name="idUsuarioUltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsumosProductos_UnidadMedida">
+          <End Type="CopackerModel.UnidadMedida" Role="UnidadMedida" Multiplicity="1" />
+          <End Type="CopackerModel.InsumosProducto" Role="InsumosProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadMedida">
+              <PropertyRef Name="idUniMed" />
+            </Principal>
+            <Dependent Role="InsumosProducto">
+              <PropertyRef Name="idUniMed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockAjustes_InsumosProductos">
+          <End Type="CopackerModel.InsumosProducto" Role="InsumosProducto" Multiplicity="1" />
+          <End Type="CopackerModel.StockAjustes" Role="StockAjuste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsumosProducto">
+              <PropertyRef Name="SKU" />
+            </Principal>
+            <Dependent Role="StockAjuste">
+              <PropertyRef Name="SKU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kits_TipoKit">
+          <End Type="CopackerModel.TipoKit" Role="TipoKit" Multiplicity="1" />
+          <End Type="CopackerModel.Kits" Role="Kit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoKit">
+              <PropertyRef Name="idTipoKit" />
+            </Principal>
+            <Dependent Role="Kit">
+              <PropertyRef Name="idTipoKit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kits_UnidadMedida">
+          <End Type="CopackerModel.UnidadMedida" Role="UnidadMedida" Multiplicity="1" />
+          <End Type="CopackerModel.Kits" Role="Kit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadMedida">
+              <PropertyRef Name="idUniMed" />
+            </Principal>
+            <Dependent Role="Kit">
+              <PropertyRef Name="idUniMed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kits_Usuarios">
+          <End Type="CopackerModel.Usuarios" Role="Usuario" Multiplicity="1" />
+          <End Type="CopackerModel.Kits" Role="Kit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Kit">
+              <PropertyRef Name="idUsuarioUltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Perfiles">
+          <End Type="CopackerModel.Perfiles" Role="Perfile" Multiplicity="1" />
+          <End Type="CopackerModel.Usuarios" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfile">
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promociones_Usuarios">
+          <End Type="CopackerModel.Usuarios" Role="Usuario" Multiplicity="1" />
+          <End Type="CopackerModel.Promocione" Role="Promocione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Promocione">
+              <PropertyRef Name="idUsuarioUltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromocionesEmpresas_Promociones">
+          <End Type="CopackerModel.Promocione" Role="Promocione" Multiplicity="1" />
+          <End Type="CopackerModel.PromocionesEmpresas" Role="PromocionesEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promocione">
+              <PropertyRef Name="idPromocion" />
+            </Principal>
+            <Dependent Role="PromocionesEmpresa">
+              <PropertyRef Name="idPromocion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockAjustes_StockAjustesMotivos">
+          <End Type="CopackerModel.StockAjustesMotivo" Role="StockAjustesMotivo" Multiplicity="1" />
+          <End Type="CopackerModel.StockAjustes" Role="StockAjuste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockAjustesMotivo">
+              <PropertyRef Name="idMotivo" />
+            </Principal>
+            <Dependent Role="StockAjuste">
+              <PropertyRef Name="idMotivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockAjustes_Usuarios">
+          <End Type="CopackerModel.Usuarios" Role="Usuario" Multiplicity="1" />
+          <End Type="CopackerModel.StockAjustes" Role="StockAjuste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="StockAjuste">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CopackerModelStoreContainer" CdmEntityContainer="CopackerEntities">
+          <EntitySetMapping Name="DotacionSolicitadas">
+            <EntityTypeMapping TypeName="CopackerModel.DotacionSolicitada">
+              <MappingFragment StoreEntitySet="DotacionSolicitada">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="idTurno" ColumnName="idTurno" />
+                <ScalarProperty Name="DotacionSolicitada1" ColumnName="DotacionSolicitada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="CopackerModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresas">
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="CostoxHoraxOperario" ColumnName="CostoxHoraxOperario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpresasOperarios">
+            <EntityTypeMapping TypeName="CopackerModel.EmpresasOperario">
+              <MappingFragment StoreEntitySet="EmpresasOperarios">
+                <ScalarProperty Name="CompletoCuestionarioEnfermedades" ColumnName="CompletoCuestionarioEnfermedades" />
+                <ScalarProperty Name="CompletoCuestionarioIngreso" ColumnName="CompletoCuestionarioIngreso" />
+                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaVtoCarnetSalud" ColumnName="FechaVtoCarnetSalud" />
+                <ScalarProperty Name="Telefono1" ColumnName="Telefono1" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesas">
+            <EntityTypeMapping TypeName="CopackerModel.Mesa">
+              <MappingFragment StoreEntitySet="Mesas">
+                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MotivosHorasPerdidas">
+            <EntityTypeMapping TypeName="CopackerModel.MotivosHorasPerdida">
+              <MappingFragment StoreEntitySet="MotivosHorasPerdidas">
+                <ScalarProperty Name="PagaCliente" ColumnName="PagaCliente" />
+                <ScalarProperty Name="idMotivo" ColumnName="idMotivo" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turnos">
+            <EntityTypeMapping TypeName="CopackerModel.Turno">
+              <MappingFragment StoreEntitySet="Turnos">
+                <ScalarProperty Name="idTurno" ColumnName="idTurno" />
+                <ScalarProperty Name="Turno1" ColumnName="Turno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnidadMedidas">
+            <EntityTypeMapping TypeName="CopackerModel.UnidadMedida">
+              <MappingFragment StoreEntitySet="UnidadMedida">
+                <ScalarProperty Name="idUniMed" ColumnName="idUniMed" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AvanceDiarios">
+            <EntityTypeMapping TypeName="CopackerModel.AvanceDiario">
+              <MappingFragment StoreEntitySet="AvanceDiario">
+                <ScalarProperty Name="idUsuarioUltimaModificacion" ColumnName="idUsuarioUltimaModificacion" />
+                <ScalarProperty Name="Palletizado" ColumnName="Palletizado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="idMotivoHorasPerdidas" ColumnName="idMotivoHorasPerdidas" />
+                <ScalarProperty Name="HorasPerdidas" ColumnName="HorasPerdidas" />
+                <ScalarProperty Name="MermaRealDelTurno" ColumnName="MermaRealDelTurno" />
+                <ScalarProperty Name="UnidadesRealizadas" ColumnName="UnidadesRealizadas" />
+                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
+                <ScalarProperty Name="idTurno" ColumnName="idTurno" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AvanceDiarioOperarios1">
+            <EntityTypeMapping TypeName="CopackerModel.AvanceDiarioOperarios">
+              <MappingFragment StoreEntitySet="AvanceDiarioOperarios">
+                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
+                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
+                <ScalarProperty Name="idTurno" ColumnName="idTurno" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormulasKits">
+            <EntityTypeMapping TypeName="CopackerModel.FormulasKit">
+              <MappingFragment StoreEntitySet="FormulasKits">
+                <ScalarProperty Name="idUsuarioUltimaModificacion" ColumnName="idUsuarioUltimaModificacion" />
+                <ScalarProperty Name="CantInsumoProducto" ColumnName="CantInsumoProducto" />
+                <ScalarProperty Name="OrdenEnPantalla" ColumnName="OrdenEnPantalla" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="idKit" ColumnName="idKit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsumosProductos">
+            <EntityTypeMapping TypeName="CopackerModel.InsumosProducto">
+              <MappingFragment StoreEntitySet="InsumosProductos">
+                <ScalarProperty Name="idUsuarioUltimaModificacion" ColumnName="idUsuarioUltimaModificacion" />
+                <ScalarProperty Name="idUniMed" ColumnName="idUniMed" />
+                <ScalarProperty Name="CantStock" ColumnName="CantStock" />
+                <ScalarProperty Name="EsInsumo" ColumnName="EsInsumo" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+                <ScalarProperty Name="DescripcionLarga" ColumnName="DescripcionLarga" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kits1">
+            <EntityTypeMapping TypeName="CopackerModel.Kits">
+              <MappingFragment StoreEntitySet="Kits">
+                <ScalarProperty Name="idUsuarioUltimaModificacion" ColumnName="idUsuarioUltimaModificacion" />
+                <ScalarProperty Name="Palletizado" ColumnName="Palletizado" />
+                <ScalarProperty Name="idUniMed" ColumnName="idUniMed" />
+                <ScalarProperty Name="CostoxHoraCliente" ColumnName="CostoxHoraCliente" />
+                <ScalarProperty Name="PorcentajeMermaPermitido" ColumnName="PorcentajeMermaPermitido" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+                <ScalarProperty Name="CantKit" ColumnName="CantKit" />
+                <ScalarProperty Name="idTipoKit" ColumnName="idTipoKit" />
+                <ScalarProperty Name="DescripcionLarga" ColumnName="DescripcionLarga" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="idKit" ColumnName="idKit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfiles1">
+            <EntityTypeMapping TypeName="CopackerModel.Perfiles">
+              <MappingFragment StoreEntitySet="Perfiles">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promociones">
+            <EntityTypeMapping TypeName="CopackerModel.Promocione">
+              <MappingFragment StoreEntitySet="Promociones">
+                <ScalarProperty Name="idUsuarioUltimaModificacion" ColumnName="idUsuarioUltimaModificacion" />
+                <ScalarProperty Name="CostoClientexUnidad" ColumnName="CostoClientexUnidad" />
+                <ScalarProperty Name="CantKitsAProducir" ColumnName="CantKitsAProducir" />
+                <ScalarProperty Name="ProductividadEstandar" ColumnName="ProductividadEstandar" />
+                <ScalarProperty Name="PorcentajeMermaReal" ColumnName="PorcentajeMermaReal" />
+                <ScalarProperty Name="FechaCierreRealPromocion" ColumnName="FechaCierreRealPromocion" />
+                <ScalarProperty Name="FechaCierreAcordadoPromocion" ColumnName="FechaCierreAcordadoPromocion" />
+                <ScalarProperty Name="FechaCreacionPromocion" ColumnName="FechaCreacionPromocion" />
+                <ScalarProperty Name="FechaOrdenDeCompraCliente" ColumnName="FechaOrdenDeCompraCliente" />
+                <ScalarProperty Name="NroOrdenDeCompraCliente" ColumnName="NroOrdenDeCompraCliente" />
+                <ScalarProperty Name="FechaOrdenDeCompraInterna" ColumnName="FechaOrdenDeCompraInterna" />
+                <ScalarProperty Name="NroOrdenDeCompraInterna" ColumnName="NroOrdenDeCompraInterna" />
+                <ScalarProperty Name="idPromocionCliente" ColumnName="idPromocionCliente" />
+                <ScalarProperty Name="DescripcionPromocion" ColumnName="DescripcionPromocion" />
+                <ScalarProperty Name="DescripcionLargaKit" ColumnName="DescripcionLargaKit" />
+                <ScalarProperty Name="EstadoPromocion" ColumnName="EstadoPromocion" />
+                <ScalarProperty Name="idKit" ColumnName="idKit" />
+                <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PromocionesEmpresas1">
+            <EntityTypeMapping TypeName="CopackerModel.PromocionesEmpresas">
+              <MappingFragment StoreEntitySet="PromocionesEmpresas">
+                <ScalarProperty Name="CostoEmpresaxHora" ColumnName="CostoEmpresaxHora" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockAjustes1">
+            <EntityTypeMapping TypeName="CopackerModel.StockAjustes">
+              <MappingFragment StoreEntitySet="StockAjustes">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="idMotivo" ColumnName="idMotivo" />
+                <ScalarProperty Name="TipoAjuste" ColumnName="TipoAjuste" />
+                <ScalarProperty Name="CantAjustada" ColumnName="CantAjustada" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idAjuste" ColumnName="idAjuste" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockAjustesMotivos">
+            <EntityTypeMapping TypeName="CopackerModel.StockAjustesMotivo">
+              <MappingFragment StoreEntitySet="StockAjustesMotivos">
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="idMotivo" ColumnName="idMotivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CopackerModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoKits">
+            <EntityTypeMapping TypeName="CopackerModel.TipoKit">
+              <MappingFragment StoreEntitySet="TipoKit">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="idTipoKit" ColumnName="idTipoKit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios1">
+            <EntityTypeMapping TypeName="CopackerModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

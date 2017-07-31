@@ -1,0 +1,38 @@
+﻿@model copacker.Turno
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores" ||
+        ViewBag.UserRoleProperty == "Propietarios")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Turno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Turno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Turno1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idTurno }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

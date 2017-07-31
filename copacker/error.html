@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>EXO / Copacker</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <script src="/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="/Scripts/bootbox.js"></script>
+    <script src="/Scripts/bootbox.helper.js"></script>
+    <script src="/Scripts/popup.js"></script>
+
+    <link href="/Content/css/bootstrap3.3.7.min.css" rel="stylesheet">
+    <link href="/Content/css/simple-sidebar.css" rel="stylesheet">
+    <link href="/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Content/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="/Content/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/Content/css/site.css" rel="stylesheet">
+    <link href="/Content/css/datepicker.css" rel="stylesheet">
+    <link href="/Content/css/bootstrap-slider.css" rel="stylesheet">
+    <link href="/Content/css/bootstrap-switch.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="/Content/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="/Content/Site.css" rel="stylesheet" />
+    <link href="/Content/css/spinner.css" rel="stylesheet" />
+   
+
+
+    <style>
+        .dropdown-menu > .status {
+            padding-left: 10px;
+        }
+
+        .slider-handle {
+            background-color: #FF0000;
+            background-image: linear-gradient(to bottom, #DA0000 0%, #FF2002 100%);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default no-margin">
+        <div class="navbar-header fixed-brand">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
+                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+            </button>
+            <a href="#"><img src="/Content/images/exologistica.gif" style="margin-top: 18px;" /></a>
+        </div>
+
+
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                   
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    <div id="wrapper" class="toggled-2">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+           
+        </div>
+
+        <div id="page-content-wrapper">
+
+            <div class="container-fluid xyz">
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                       <span>No posee permisos para ingresar al sistema de Copacker. Por favor solicitar los mismos antes de ingresar.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- jQuery -->
+
+    <script src="/Scripts/helpers.js"></script>
+
+    <script src="/Scripts/bootstrap3.3.7.min.js"></script>
+    <script src="/Scripts/sidebar_menu.js"></script>
+    <script src="/Scripts/bootstrap-select.min.js"></script>
+    <script src="/Scripts/ajax-bootstrap-select.min.js"></script>
+    <script src="/Scripts/ajax-bootstrap-select.es-ES.js"></script>
+
+
+
+    <script src="/Scripts/jquery.dataTables.min.js"></script>
+    <script src="/Scripts/bootstrap-datepicker.js"></script>
+    <script src="/Scripts/bootstrap-slider.js"></script>
+
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script src="/Scripts/moment.js"></script>
+    <script src="/Scripts/moment-with-locales.js"></script>
+    <script src="/Scripts/bootstrap-datetimepicker.js"></script>
+
+    <script src="/Scripts/urls.js"></script>
+
+    <script src="/Scripts/jquery.sparkline.min.js"></script>
+
+
+    <script>
+
+        // Este identificador sirve para que podamos atachar otro evento luego de cambiar de cliente.
+        var afterChangeCliente;
+
+        function chgLogo(d) {
+
+            var imageName = d.find(":selected").data('imagen');
+            if (imageName !== undefined && imageName !== null) {
+                $('#logo').attr('src', '/Images/' + imageName);
+            }
+            else {
+                $('#logo').attr('src', '');
+            }
+        }
+
+
+        $('#Cliente').change(function (v)
+        {
+            chgLogo($('#Cliente'));
+            //$.get(Url_Cambiar_Cliente, ).done(function () { });
+
+            jQuery.ajax({
+                url: Url_Cambiar_Cliente,
+                data: { "idCliente": $(this).val() },
+                success: function (result) {
+                    if (afterChangeCliente !== undefined && afterChangeCliente !== null) {
+                        afterChangeCliente();
+                    }
+                },
+                async: false
+            });
+
+        });
+
+
+        function deshabilitarClienteSelect() {
+
+            $('#Cliente').attr('disabled', true);
+            $('.selectpicker').selectpicker('refresh');
+        }
+
+        function ocultarClienteSelect() {
+            $('#Cliente').selectpicker('hide');
+            $('#BarraCliente').hide();
+        }
+
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker();
+            chgLogo($('#Cliente'));
+            $.get(Url_Cambiar_Cliente, { "idCliente": $('#Cliente').val() }).done(function () { });
+        });
+    </script>
+
+
+</body>
+
+</html>          

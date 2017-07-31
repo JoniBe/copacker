@@ -1,0 +1,110 @@
+﻿@model copacker.EmpresasOperario
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores" ||
+        ViewBag.UserRoleProperty == "Propietarios")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Operarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Documento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+        <dt>
+            Vto. Carnet Salud
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaVtoCarnetSalud)
+        </dd>
+
+        <dt>
+            Cuestiorario Ingreso
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletoCuestiorarioIngreso)
+        </dd>
+
+        <dt>
+            Cuestiorario Enfermedades
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletoCuestiorarioEnfermedades)
+        </dd>
+
+        <dt>
+            Telefono 1
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono1)
+        </dd>
+
+        <dt>
+           Telefono 2
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono2)
+        </dd>
+
+        <dt>
+            Razón Social
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.RazonSocial)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Legajo }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

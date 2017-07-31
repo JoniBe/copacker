@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Empresa>
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores" ||
+        ViewBag.UserRoleProperty == "Propietarios")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Empresas";
+}
+
+<h2>Empresas</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Razón Social
+        </th>
+        <th>
+            Costo hora
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RazonSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostoxHoraxOperario)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idEmpresa }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idEmpresa }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.idEmpresa })
+        </td>
+    </tr>
+}
+
+</table>

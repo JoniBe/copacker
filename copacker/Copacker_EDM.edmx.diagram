@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c4b9491a13c44317a999612d7a862ff8" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="CopackerModel.DotacionSolicitada" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CopackerModel.Empresa" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CopackerModel.EmpresasOperario" Width="2.25" PointX="3.125" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CopackerModel.Mesa" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CopackerModel.MotivosHorasPerdida" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CopackerModel.Turno" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CopackerModel.UnidadMedida" Width="1.5" PointX="5.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="CopackerModel.FK_DotacionSolicitada_Turnos" ManuallyRouted="false" />
+        <AssociationConnector Association="CopackerModel.FK_EmpresasOperarios_Empresas" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CopackerModel.AvanceDiario" Width="1.5" PointX="12.5" PointY="13.375" />
+        <EntityTypeShape EntityType="CopackerModel.AvanceDiarioOperarios" Width="2.5" PointX="15.5" PointY="11.125" />
+        <EntityTypeShape EntityType="CopackerModel.FormulasKit" Width="1.5" PointX="10.25" PointY="34.75" />
+        <EntityTypeShape EntityType="CopackerModel.InsumosProducto" Width="1.5" PointX="8" PointY="22.375" />
+        <EntityTypeShape EntityType="CopackerModel.Kits" Width="1.5" PointX="10.25" PointY="10.75" />
+        <EntityTypeShape EntityType="CopackerModel.Perfiles" Width="1.5" PointX="5.75" PointY="18.875" />
+        <EntityTypeShape EntityType="CopackerModel.Promocione" Width="1.5" PointX="10.25" PointY="24.875" />
+        <EntityTypeShape EntityType="CopackerModel.PromocionesEmpresas" Width="2.375" PointX="12.5" PointY="18.625" />
+        <EntityTypeShape EntityType="CopackerModel.StockAjustes" Width="1.5" PointX="10.25" PointY="18.125" />
+        <EntityTypeShape EntityType="CopackerModel.StockAjustesMotivo" Width="2" PointX="8" PointY="15" />
+        <EntityTypeShape EntityType="CopackerModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CopackerModel.TipoKit" Width="1.5" PointX="8" PointY="11.875" />
+        <EntityTypeShape EntityType="CopackerModel.Usuarios" Width="1.5" PointX="8" PointY="18.375" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiario_Mesas" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiario_MotivosHorasPerdidas" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiario_Promociones" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiario_Turnos" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiario_Usuarios" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiarioOperarios_EmpresasOperarios" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiarioOperarios_Mesas" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiarioOperarios_Promociones" />
+        <AssociationConnector Association="CopackerModel.FK_AvanceDiarioOperarios_Turnos" />
+        <AssociationConnector Association="CopackerModel.FK_PromocionesEmpresas_Empresas" />
+        <AssociationConnector Association="CopackerModel.FK_FormulasKits_ToTable" />
+        <AssociationConnector Association="CopackerModel.FK_InsumosProductos_UnidadMedida" />
+        <AssociationConnector Association="CopackerModel.FK_StockAjustes_InsumosProductos" />
+        <AssociationConnector Association="CopackerModel.FK_Kits_TipoKit" />
+        <AssociationConnector Association="CopackerModel.FK_Kits_UnidadMedida" />
+        <AssociationConnector Association="CopackerModel.FK_Kits_Usuarios" />
+        <AssociationConnector Association="CopackerModel.FK_Usuarios_Perfiles" />
+        <AssociationConnector Association="CopackerModel.FK_Promociones_Usuarios" />
+        <AssociationConnector Association="CopackerModel.FK_PromocionesEmpresas_Promociones" />
+        <AssociationConnector Association="CopackerModel.FK_StockAjustes_StockAjustesMotivos" />
+        <AssociationConnector Association="CopackerModel.FK_StockAjustes_Usuarios" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,45 @@
+﻿@model copacker.Usuarios
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idUsuario)
+        </dd>
+
+        <dt>
+            Grupo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil.idPerfil)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idUsuario }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

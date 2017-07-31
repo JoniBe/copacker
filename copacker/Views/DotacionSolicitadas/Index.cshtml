@@ -1,0 +1,53 @@
+﻿@model IEnumerable<copacker.DotacionSolicitada>
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores" ||
+        ViewBag.UserRoleProperty == "Propietarios" ||
+        ViewBag.UserRoleProperty == "Integrantes")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Dotación Solicitada";
+
+}
+
+<h2>Dotación Solicitada</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Dotación Solicitada
+        </th>
+        <th>
+            Turno
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DotacionSolicitada1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Turno.Turno1)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Fecha.ToString("yyyyMMdd"), idTurno = item.idTurno }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.Fecha.ToString("yyyyMMdd"), idTurno = item.idTurno }) |
+            @Html.ActionLink("Borrar", "Delete", new {  id=item.Fecha.ToString("yyyyMMdd"), idTurno=item.idTurno  })
+        </td>
+    </tr>
+}
+
+</table>

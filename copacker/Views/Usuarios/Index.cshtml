@@ -1,0 +1,50 @@
+﻿@model IEnumerable<copacker.Usuarios>
+
+@{
+    if (ViewBag.UserRoleProperty == "Administradores")
+    {
+    }
+    else if (ViewBag.UserRoleProperty == "Reject")
+    {
+        Response.Redirect("/error.html");
+    }
+    else
+    {
+        Response.Redirect("/Home/Index");
+    }
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Usuario
+        </th>
+        <th>
+            Grupo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Perfil.idPerfil)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idUsuario }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idUsuario }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.idUsuario })
+        </td>
+    </tr>
+}
+
+</table>

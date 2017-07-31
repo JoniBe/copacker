@@ -1,0 +1,82 @@
+﻿.nav-pills2 > li.active > a, .nav-pills2 > li.active > a:hover, .nav-pills2 > li.active > a:focus {
+    background-color: #CD0C00 !important;
+    color: #fff !important;
+}
+
+.switcher-operacion-company {
+    margin-top: 13px;
+}
+
+.navbar-default {
+    background-color: #fff !important;
+    border-color: #e7e7e7;
+    border-style: none none solid none;
+    border-radius: 0px;
+}
+
+
+.label-operacion-ompany {
+    color: #d9534f;
+    margin-left: 10px;
+}
+
+.bootstrap-select > .btn-default {
+    color: #d9534f !important;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid #999;
+    padding: 10px 18px;
+}
+
+/* textboxes por default */
+.textbox-default {
+    background: #f8f8f8 none repeat scroll 0 0;
+    border: 3px solid #ddd;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #888;
+    font-family: "Roboto",sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    height: 35px;
+    line-height: 40px;
+    margin: 0;
+    padding: 0 20px;
+    transition: all 0.3s ease 0s;
+    vertical-align: middle;
+}
+
+/* Workaround para que el slider se acomodo al ancho total de su padre */
+.slider.slider-horizontal {
+    width: 100% !important;
+}
+
+.bigModal > .modal-dialog{
+    width:80% !important;
+}
+
+.normalModal{
+    width:100% !important;
+}
+
+.radio, .checkbox {
+    margin-top: 0px !important;
+}
+
+/*stilo para ajustar los checkboxes*/
+    .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+        margin-left:0px !important;
+    }
+
+.label {
+border:0px !important;
+}
+
+.displayLabel{
+    color: gray;
+    font-weight: 700;
+    margin-bottom: 5px;
+    max-width: 100%;
+
+}
